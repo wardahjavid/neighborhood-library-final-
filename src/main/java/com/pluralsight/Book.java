@@ -159,8 +159,19 @@ import java.util.Scanner;
                 boolean bookFound = false;
 
                 for (Book book1 : book) {
-                    if(!book.isCheckedOut());
-                    
+                    if (!book.isCheckedout()) {
+                        System.out.println(book1.showAvailableBooks());
+                        checkedOutBooks = true;
+                    }
+                }
+
+                if (!checkedOutBooks) {
+                    System.out.println("No books are currently checked out!");
+                    return;
+                }
+                System.out.println("Please enter book ID to check in or enter 0 to cancel. ");
+                int id = Integer.parseInt(potatorscanner.nextLine());
+                if(id == 0) return;
 
             }
 
@@ -168,6 +179,9 @@ import java.util.Scanner;
 
 
 
+        }
+
+        private boolean showAvailableBooks() {
         }
     }
 }
