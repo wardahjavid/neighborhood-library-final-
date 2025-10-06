@@ -161,28 +161,42 @@ import java.util.Scanner;
                 for (Book book1 : book) {
                     if (!book.isCheckedout()) {
                         System.out.println(book1.showAvailableBooks());
+                        availableBooks = true;
+                    }
+                }
+
+                if (!availableBooks) {
+                    System.out.println("There are no books available at this time.");
+                    return;
+                }
+                System.out.println("Please enter book ID to check in or enter 0 to cancel. ");
+                int id = Integer.parseInt(potatorscanner.nextLine());
+                if (id == 0) return;
+
+            }
+
+            public static void displayCheckedOutBooks(Scanner input, Book[] book) {
+                System.out.println("These are the books that are checked out at this time.");
+
+                boolean anyBooksCheckedOut = false;
+
+                for (Book book1 : book) {
+                    if(book1.isCheckedOut()) {
+                        System.out.println("book1.checkedOutBoots";
                         checkedOutBooks = true;
                     }
                 }
 
                 if (!checkedOutBooks) {
-                    System.out.println("No books are currently checked out!");
-                    return;
-                }
-                System.out.println("Please enter book ID to check in or enter 0 to cancel. ");
-                int id = Integer.parseInt(potatorscanner.nextLine());
-                if(id == 0) return;
-
-            }
-
+                    System.out.println("There are no books checked out at this yime");
 
 
 
 
         }
 
-        private boolean showAvailableBooks() {
-        }
+
+
     }
 }
 
