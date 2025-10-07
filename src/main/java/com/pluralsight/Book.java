@@ -86,7 +86,7 @@ import java.util.Scanner;
             return id + ", " + isbn + ", " + title + ", Checked out to " + checkedOutTo;
         }
 
-        static class NeighorhoodLibrary {
+        public class NeighborhoodLibrary {
             public static void main(String[] args) {
                 Scanner potatoscanner = new Scanner(System.in);
 
@@ -158,7 +158,7 @@ import java.util.Scanner;
                 boolean availableBooksFound = false;
 
                 for (Book book1 : book) {
-                    if (!book.isCheckedout()) {
+                    if (!book1.isCheckedOut) {
                         System.out.println(book1.availableBookInformation());
                         availableBooksFound = true;
                     }
@@ -172,13 +172,13 @@ import java.util.Scanner;
                 int id = Integer.parseInt(potatorscanner.nextLine());
                 if (id == 0) return;
 
-                Book selectedBook = findBookbyID(book, id);
+                Book selectedBook = findBookById(book, id);
                 if (selectedBook == null) {
                     System.out.println("The book was not found.");
                     return;
                 }
 
-                if (selectedBook.isCheckedOut()) {
+                if (selectedBook.getIsCheckedOut()) {
                     System.out.println("This book is already checked out.");
                 } else {
                     System.out.println("Please enter your name.");
@@ -197,9 +197,9 @@ import java.util.Scanner;
                 boolean anyBooksCheckedOut = false;
 
                 for (Book book1 : book) {
-                    if(book1.isCheckedOut()) {
+                    if (book1.getIsCheckedOut()) {
                         System.out.println("book1.checkedOutBoots");
-                        anyBooksCheckedOut= true;
+                        anyBooksCheckedOut = true;
                     }
                 }
 
@@ -212,22 +212,25 @@ import java.util.Scanner;
                 int id = Integer.parseInt(potatoscanner.nextLine());
                 if (id == 0) return;
 
-                Book selectedBook = findBookbyID(book, id);
+                Book selectedBook = findBookById(book, id);
                 if (selectedBook == null) {
                     System.out.println("The book was not found.");
                     return;
                 }
-
-                
-
-
-
-
+            }
+            public static Book findBookById(Book[] books, int id) {
+                for (Book book1 : books) {
+                    if (book1.getId() == id) {
+                        return book1;
+                    }
+                }
+                return null;
+            }
         }
 
 
 
-    }
+
 
 
 
