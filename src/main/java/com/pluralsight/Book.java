@@ -79,11 +79,11 @@ import java.util.Scanner;
         }
 
         public String availableBookInformation() {
-            return id + ", " + isbn + ", " + title;
+            return id + " | " + isbn + " | " + title;
         }
 
         public String checkedOutBookInformation() {
-            return id + ", " + isbn + ", " + title + ", Checked out to " + checkedOutTo;
+            return id + " | " + isbn + " | " + title + " | Checked out to " + checkedOutTo;
         }
 
         public class NeighborhoodLibrary {
@@ -121,8 +121,8 @@ import java.util.Scanner;
 
                 System.out.println("Welcome to the Neighborhood Library!");
 
-                label:
-                while(true) {
+
+                while(bookInformationRunning) {
                     System.out.println("Home Screen");
                     System.out.println("1 - Please show all available books.");
                     System.out.println("2 - Please show all checked out books.");
@@ -141,7 +141,7 @@ import java.util.Scanner;
                             break;
                         case "3":
                             System.out.println("Exit. Goodbye!");
-                            break label;
+                            break;
                         default:
                             System.out.println("This is an invalid choice. Please try again!");
 
