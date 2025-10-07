@@ -18,40 +18,40 @@ import java.util.Scanner;
 
         }
 
-        public String getIsbn() {
-            return isbn;
-        }
-
         public int getId() {
             return id;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public boolean isCheckedOut() {
-            return isCheckedOut;
-        }
-
-        public String getCheckedOutTo() {
-            return checkedOutTo;
         }
 
         public void setId(int id) {
             this.id = id;
         }
 
+        public String getIsbn() {
+            return isbn;
+        }
+
         public void setIsbn(String isbn) {
             this.isbn = isbn;
+        }
+
+        public String getTitle() {
+            return title;
         }
 
         public void setTitle(String title) {
             this.title = title;
         }
 
+        public boolean getIsCheckedOut() {
+            return isCheckedOut;
+        }
+
         public void setCheckedOut(boolean checkedOut) {
             isCheckedOut = checkedOut;
+        }
+
+        public String getCheckedOutTo() {
+            return checkedOutTo;
         }
 
         public void setCheckedOutTo(String checkedOutTo) {
@@ -153,19 +153,18 @@ import java.util.Scanner;
 
             }
 
-
             private static void showAvailableBooks(Scanner potatorscanner, Book[] book) {
                 System.out.println("Please see available books. ");
-                boolean bookFound = false;
+                boolean availableBooksFound = false;
 
                 for (Book book1 : book) {
                     if (!book.isCheckedout()) {
-                        System.out.println(book1.showAvailableBooks());
-                        availableBooks = true;
+                        System.out.println(book1.availableBookInformation());
+                        availableBooksFound = true;
                     }
                 }
 
-                if (!availableBooks) {
+                if (!availableBooksFound) {
                     System.out.println("There are no books available at this time.");
                     return;
                 }
@@ -173,9 +172,26 @@ import java.util.Scanner;
                 int id = Integer.parseInt(potatorscanner.nextLine());
                 if (id == 0) return;
 
+                Book selectedBook = findBookbyID(book, id);
+                if (selectedBook == null) {
+                    System.out.println("The book was not found.");
+                    return;
+                }
+
+                if (selectedBook.isCheckedOut()) {
+                    System.out.println("This book is already checked out.");
+                } else {
+                    System.out.println("Please enter your name.");
+                    String yourName = potatorscanner.nextLine();
+                    selectedBook.checkedOut(yourName);
+                    System.out.println("You checked out " + selectedBook.getTitle() + ".");
+                    }
+                }
             }
 
-            public static void displayCheckedOutBooks(Scanner input, Book[] book) {
+
+
+            public static void displayCheckedOutBooks(Scanner potatoscanner, Book[] book) {
                 System.out.println("These are the books that are checked out at this time.");
 
                 boolean anyBooksCheckedOut = false;
@@ -183,12 +199,26 @@ import java.util.Scanner;
                 for (Book book1 : book) {
                     if(book1.isCheckedOut()) {
                         System.out.println("book1.checkedOutBoots";
-                        checkedOutBooks = true;
+                        anyBooksCheckedOut= true;
                     }
                 }
 
-                if (!checkedOutBooks) {
-                    System.out.println("There are no books checked out at this yime");
+                if (!anyBooksCheckedOut) {
+                    System.out.println("There are no books currently checked out at this time.");
+                    return;
+                }
+
+                System.out.println("Please enter book ID to check in or 0 to cancel. ");
+                int id = Integer.parseInt(potatoscanner.nextLine());
+                if (id == 0) return;
+
+                Book selectedBook = findBookbyID(book, id);
+                if (selectedBook == null) {
+                    System.out.println("The book was not found.");
+                    return;
+                }
+
+
 
 
 
