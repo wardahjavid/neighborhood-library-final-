@@ -86,7 +86,7 @@ import java.util.Scanner;
             return id + ", " + isbn + ", " + title + ", Checked out to " + checkedOutTo;
         }
 
-        static class NeighorhoodLibrary {
+        static class NeighborhoodLibrary {
             public static void main(String[] args) {
                 Scanner potatoscanner = new Scanner(System.in);
 
@@ -153,11 +153,11 @@ import java.util.Scanner;
 
             }
 
-            private static void showAvailableBooks(Scanner potatorscanner, Book[] book) {
+            private static void showAvailableBooks(Scanner potatorscanner, NeighborhoodLibrary[] book) {
                 System.out.println("Please see available books. ");
                 boolean availableBooksFound = false;
 
-                for (Book book1 : book) {
+                for (NeighborhoodLibrary book1 : book) {
                     if (!book.isCheckedout()) {
                         System.out.println(book1.availableBookInformation());
                         availableBooksFound = true;
@@ -172,7 +172,7 @@ import java.util.Scanner;
                 int id = Integer.parseInt(potatorscanner.nextLine());
                 if (id == 0) return;
 
-                Book selectedBook = findBookbyID(book, id);
+                NeighborhoodLibrary selectedBook = findBookbyID(book, id);
                 if (selectedBook == null) {
                     System.out.println("The book was not found.");
                     return;
@@ -191,14 +191,14 @@ import java.util.Scanner;
 
 
 
-            public static void displayCheckedOutBooks(Scanner potatoscanner, Book[] book) {
+            public static void displayCheckedOutBooks(Scanner potatoscanner, NeighborhoodLibrary[] book) {
                 System.out.println("These are the books that are checked out at this time.");
 
                 boolean anyBooksCheckedOut = false;
 
-                for (Book book1 : book) {
+                for (NeighborhoodLibrary book1 : book) {
                     if(book1.isCheckedOut()) {
-                        System.out.println("book1.checkedOutBoots";
+                        System.out.println("book1.checkedOutBoots");
                         anyBooksCheckedOut= true;
                     }
                 }
@@ -212,23 +212,25 @@ import java.util.Scanner;
                 int id = Integer.parseInt(potatoscanner.nextLine());
                 if (id == 0) return;
 
-                Book selectedBook = findBookbyID(book, id);
+                NeighborhoodLibrary selectedBook = findBookbyID(book, id);
                 if (selectedBook == null) {
                     System.out.println("The book was not found.");
                     return;
                 }
 
+                if (selectedBook.checkedIn()) {
+                    System.out.println(("The selected book" ) + selectedBook.getTitle() + (" is checked in."));
+                } else {
+                    System.out.println("The book was not checked out.");
+                }
+            }
 
-
-
-
-
-        }
-
-
-
+            public static NeighborhoodLibrary findBookbyID(NeighborhoodLibrary[] book, int id) {
+                for (NeighborhoodLibrary book1 : book) {
+                    if (book1.getId() == id) {
+                        return book1;
+                    }
+                }
+                return null;
+            }
     }
-}
-
-
-}
