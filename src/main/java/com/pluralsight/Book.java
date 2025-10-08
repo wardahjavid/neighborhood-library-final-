@@ -194,7 +194,7 @@ public class Book {
                 System.out.println("Please enter your name.");
                 String yourName = potatorscanner.nextLine();
                 selectedBook.checkedOut(yourName);
-                System.out.println("You checked out " + selectedBook.getTitle() + ".");
+                System.out.println(yourName + " checked out " + selectedBook.getTitle() + ".");
             }
         }
     }
